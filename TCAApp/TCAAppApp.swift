@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct TCAAppApp: App {
+    @State var store = Store(initialState: AdditionFeature.State()) {
+        AdditionFeature()
+            ._printChanges()
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(store: self.store)
         }
     }
 }
